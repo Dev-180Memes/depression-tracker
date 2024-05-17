@@ -11,15 +11,15 @@ const AlertNotifications = ({ alerts }: { alerts: any }) => {
     }, [alerts]);
 
     return (
-        <div>
-            <h2>Alert Notifications</h2>
+        <div className="flex flex-col gap-1">
+            <h2 className="text-2xl font-bold">Alert Notifications</h2>
             {Alerts.length === 0 ? (
-                <p>No alerts at this time</p>
+                <p className="text-red-300">No alerts at this time</p>
             ) : (
-                <ul>
+                <ul className="">
                     {Alerts.map((alert, index) => (
                         <li key={index}>
-                            {alert.message}
+                            {index + 1} - {alert.message}
                         </li>
                     ))}
                 </ul>

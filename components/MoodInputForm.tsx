@@ -87,18 +87,24 @@ const MoodInputForm = ({ setMoodData, moodData, setAlerts }: { setMoodData: any,
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
+        <form 
+            onSubmit={handleSubmit}
+            className="flex gap-2 flex-col justify-center items-center"
+        >
+            <label
+                className="flex flex-col gap-1 justify-center text-lg"
+            >
                 Mood Score:
                 <input
                     type="number"
                     value={moodScore}
                     onChange={(e) => setMoodScore(parseInt(e.target.value))}
+                    className="border rounded px-2"
                 />
             </label>
-            <button type="submit">Submit</button>
-            {successMessage && <p>{successMessage}</p>}
-            {errorMessage && <p>{errorMessage}</p>}
+            <button type="submit" className="text-sm bg-blue-600 px-5 py-2 rounded-lg">Submit</button>
+            {successMessage && <p className="bg-neutral-900 text-green-500">{successMessage}</p>}
+            {errorMessage && <p className="bg-neutral-900 text-red-500">{errorMessage}</p>}
         </form>
     );
 };
