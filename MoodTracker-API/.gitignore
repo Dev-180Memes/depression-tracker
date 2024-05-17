@@ -1,0 +1,5 @@
+.vscode
+*__pycache__
+*.db
+sql_commands.py
+*.pytest_cache
