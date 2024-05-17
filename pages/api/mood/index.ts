@@ -22,7 +22,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         try {
-            const response = await postMood(mood_score);
+            // console.log('Posting mood:', mood_score, decodedToken.moodUserId);
+            const response = await postMood(mood_score, decodedToken.moodUserId);
+            // console.log('Response:', response);
             formatResponse(res, response);
         } catch (error) {
             console.error('Error posting mood', error);
@@ -40,7 +42,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         try {
-            const moodData = await getMoods();
+            const moodData = await getMoods(decodedToken.moodUserId);
             formatResponse(res, moodData);
         } catch (error) {
             console.error('Error getting moods', error);

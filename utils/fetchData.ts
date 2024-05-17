@@ -1,3 +1,5 @@
+import { timeStamp } from "console";
+
 const moodTrackerAPI = process.env.MOODTRACKER_API_BASE_URL;
 
 export async function fetchAPI (url: string, method: string = 'GET', headers: HeadersInit = {}, body: any = null) {
@@ -15,7 +17,7 @@ export async function fetchAPI (url: string, method: string = 'GET', headers: He
 
 export const checkServer = async () => fetchAPI(`${moodTrackerAPI}/health`);
 
-export const getActiveUser = async () => fetchAPI(`${moodTrackerAPI}/getuser`);
+export const getActiveUser = async (userId: number) => fetchAPI(`${moodTrackerAPI}/getuser/${userId}`);
 
 export const loginUser = async (username: string, email: string, password: string,) => {
     return fetchAPI(`${moodTrackerAPI}/login`, 'POST', {}, {
@@ -27,10 +29,14 @@ export const loginUser = async (username: string, email: string, password: strin
 
 export const logoutUser = async () => fetchAPI(`${moodTrackerAPI}/logout`);
 
-export const postMood = (moodScore: number) => {
+export const postMood = (moodScore: number, userId: number) => {
+    const utcDateDirect = new Date().toISOString();
+    console.log(utcDateDirect);
     return fetchAPI(`${moodTrackerAPI}/mood`, 'POST', {}, {
-        'mood_score': moodScore
+        'mood_score': moodScore,
+        user_id: userId,
+        timestamp: utcDateDirect,
     })
 }
 
-export const getMoods = async () => fetchAPI(`${moodTrackerAPI}/mood`);
+export const getMoods = async (userId: number) => fetchAPI(`${moodTrackerAPI}/mood/${userId}`);

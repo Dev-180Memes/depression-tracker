@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { decodeJWT } from '@/lib/decodeToken';
 
 const SECRET_KEY: string = process.env.SECRET_KEY || 'secret';
 
@@ -8,7 +9,15 @@ export const generateToken = (user: { id: string; username: string; email: strin
 
 export const verifyToken = (token: string) => {
     try {
-        return jwt.verify(token, SECRET_KEY);
+        // Decode the token
+        const decodedToken = decodeJWT(token);
+
+        if (!decodedToken) {
+            return null;
+        }
+
+        // console.log("Decoded token:", decodedToken);
+        return decodedToken;
     } catch (error) {
         return null;
     }

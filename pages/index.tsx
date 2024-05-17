@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { set } from "mongoose";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -24,7 +23,7 @@ const Home: NextPage = () => {
       });
 
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.data.token);
         router.push("/dashboard");
       } else {
         setError("Please check your credentials and try again.")
