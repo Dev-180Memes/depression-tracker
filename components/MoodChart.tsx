@@ -65,34 +65,7 @@ const MoodChart = ({ data }: { data: any}) => {
     })
   }, [data]);
 
-  // const options: ChartOptions<'line'> = {
-  //   responsive: true,
-  //   scales: {
-  //     x: {
-  //       display: true,
-  //     },
-  //     y: {
-  //       display: true,
-  //     },
-  //   },
-  // };
-
   return <Line data={chartData} options={options} />;
-
-  // const chartData = {
-  //   labels: data.map((entry: any) => new Date(entry.timestamp).toLocaleDateString()),
-  //   datasets: [
-  //     {
-  //       label: 'Mood Score',
-  //       data: data.map((entry: any) => entry.mood_score),
-  //       borderColor: 'rgba(75, 192, 192, 1)',
-  //       backgroundColor: 'rgba(75, 192, 192, 0.2)',
-  //       fill: false,
-  //     },
-  //   ],
-  // };
-
-  // return <Line data={chartData} />;
 };
 
 export default MoodChart;
