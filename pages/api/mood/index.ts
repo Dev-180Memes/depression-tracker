@@ -43,6 +43,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         try {
             const moodData = await getMoods(decodedToken.moodUserId);
+            // console.log(moodData)
             formatResponse(res, moodData);
         } catch (error) {
             console.error('Error getting moods', error);

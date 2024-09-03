@@ -55,11 +55,11 @@ const MoodChart = ({ data }: { data: any}) => {
 
   useEffect(() => {
     setChartData({
-      labels: data.map((entry: any) => entry.timestamp),
+      labels: data?.map((entry: any) => entry.timestamp),
       datasets: [
         {
           ...chartData.datasets[0],
-          data: data.map((entry: any) => entry.mood_score),
+          data: data?.map((entry: any) => entry.mood_score),
         }
       ]
     })

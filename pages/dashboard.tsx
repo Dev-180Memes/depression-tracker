@@ -22,19 +22,7 @@ const Dashboard = () => {
   // });
   const [decodedToken, setDecodedToken] = useState<any | null>(null);
 
-  // useEffect(() => {
-  //   const token: string | null = localStorage.getItem('token');
-  //   if (!token) {
-  //     router.push('/');
-  //     return;
-  //   }
-  //   const decodedToken = decodeJWT(token);
-  //   if (!decodedToken) {
-  //     router.push('/');
-  //     return;
-  //   }
-  //   setDecodedToken(decodedToken);
-  // }, [router]);
+  
 
   // useEffect(() => {
   //   const fetchUserData = async () => {
@@ -49,8 +37,8 @@ const Dashboard = () => {
   //       setUser(userResponse.data.data);
 
   //       const moodResponse = await axios.get('/api/mood', config);
-  //       // console.log("Mood response:", moodResponse.data.data);
-  //       setMoodData(moodResponse.data.data.mood_entries);
+  //       console.log("Mood response:", moodResponse.data.data);
+  //       setMoodData(moodResponse.data.data.MoodEntries);
   //     } catch (error) {
   //       console.error('Failed to fetch user data', error);
   //     }
@@ -220,12 +208,12 @@ const Dashboard = () => {
           <div className="p-4 md:p-5">
             <div className="flex items-center gap-x-2">
               <p className="text-xs uppercase tracking-wide text-green-300">
-                How are you feeling
+                How are you feeling on a scale of 1 to 10
               </p>
               <div className="hs-tooltip">
                 <div className="hs-tooltip-toggle">
-                  <svg className="flex-shrink-0 size-4 text-green-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-                  <span className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 text-xs font-medium text-green-500 rounded shadow-sm bg-green-700" role="tooltip">
+                  <svg className="flex-shrink-0 size-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                  <span className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 text-xs font-medium text-white rounded shadow-sm bg-green-700" role="tooltip">
                     Score ranges from 1 to 10, with 1 being the saddest and 10 being the happiest
                   </span>
                 </div>
@@ -256,7 +244,7 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {moodData.slice(0, 10).map((mood: any) => (
+            {moodData?.slice(0, 10).map((mood: any) => (
               <tr key={mood.id}>
                 <td className="border border-slate-700 p-2 text-green-500">{mood.mood_score}</td>
                 <td className="border border-slate-700 p-2 text-green-500">{mood.timestamp}</td>
